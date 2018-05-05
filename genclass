@@ -42,4 +42,4 @@ header_file.write(header_template.substitute(names))
 source_file = open(names["source_name"], "w+")
 source_file.write(source_template.substitute(names))
 
-print ("Created: " + name["header_name"] + ", " + name["source_name"])
+print ("Created: " + names["header_name"] + ", " + names["source_name"])
