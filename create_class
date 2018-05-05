@@ -1,0 +1,43 @@
+#!/usr/bin/env python
+from sys import argv
+from string import Template
+
+def gen_name(parts, change, underscore):
+    return ('_' if underscore else '').join(change(part) for part in parts)
+
+if len(argv) != 2:
+    print ("Only accepts 1 argument")
+    exit()
+
+file_name = argv[1].lower()
+
+parts = file_name.split('_')
+
+names = {
+        "if_name" : gen_name(parts, str.upper, True),
+        "class_name" : gen_name(parts, str.capitalize, False),
+        "source_name" : file_name + ".cpp",
+        "header_name" : file_name + ".h"
+        }
+
+header_template = Template("""
+#ifndef $if_name
+#define $if_name
+
+class $class_name {
+	public:
+
+	private:
+
+};
+
+#endif""")
+
+source_template = Template('#include $header_name') 
+
+
+header_file = open(names["header_name"], "w+")
+header_file.write(header_template.substitute(names))
+
+source_file = open(names["source_name"], "w+")
+source_file.write(source_template.substitute(names))
