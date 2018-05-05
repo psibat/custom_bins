@@ -33,7 +33,7 @@ class $class_name {
 
 #endif""")
 
-source_template = Template('#include $header_name') 
+source_template = Template('#include "$header_name"') 
 
 
 header_file = open(names["header_name"], "w+")
@@ -41,3 +41,5 @@ header_file.write(header_template.substitute(names))
 
 source_file = open(names["source_name"], "w+")
 source_file.write(source_template.substitute(names))
+
+print ("Created: " + name["header_name"] + ", " + name["source_name"])
