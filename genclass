@@ -26,14 +26,17 @@ header_template = Template("""
 
 class $class_name {
 	public:
-
+		$class_name();
 	private:
 
 };
 
 #endif""")
 
-source_template = Template('#include "$header_name"') 
+source_template = Template("""#include \"$header_name\"
+ 
+$class_name::$class_name() {
+}""") 
 
 
 header_file = open(names["header_name"], "w+")
