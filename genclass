@@ -21,8 +21,8 @@ names = {
         }
 
 header_template = Template("""
-#ifndef $if_name
-#define $if_name
+#ifndef ${if_name}_H
+#define ${if_name}_H
 
 class $class_name {
 	public:
